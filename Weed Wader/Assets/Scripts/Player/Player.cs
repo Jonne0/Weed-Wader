@@ -49,12 +49,13 @@ public class Player : MonoBehaviour
             //cool effect
             if(health <= 0)
             {
-                Debug.Log("skill issue");
+                Debug.Log("game Over");
                 health = 3;
             }
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             bullet.OnHit();
             //start counting down and turn on invincibility
+            
             invincibleHit = true;
             isInvincible = true;
 
