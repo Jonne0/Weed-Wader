@@ -14,6 +14,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float growthTime = 1;
     private float currentGrowth;
     private int bulletsToShoot;
+    private float waitCounter;
 
     public EnemyState currentState;
     //player is kept track of to know where to aim
@@ -71,6 +72,21 @@ public class EnemyBehaviour : MonoBehaviour
                     ChangeState(EnemyState.Growing);
                 break;
             }
+
+            case EnemyState.WaitForNext:
+            {
+                waitCounter += Time.deltaTime;
+                if(waitCounter > 1)
+                {
+                    //70/30 for shoot or move
+                    float f = Random.Range(0.0f,1.0f);
+                    if(f > 0.7f)
+                        ChangeState(EnemyState.Moving);
+                    else
+                        ChangeState(EnemyState.Shooting);
+                }
+                break;
+            }
         }
     }
 
@@ -82,6 +98,11 @@ public class EnemyBehaviour : MonoBehaviour
             case EnemyState.Growing:
             {
                 //play spawn animation
+                break;
+            }
+            case EnemyState.WaitForNext:
+            {
+                waitCounter = 0;
                 break;
             }
             default:
@@ -103,7 +124,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
             case EnemyState.Shooting:
             {
-                bulletsToShoot = Random.Range(3, 15);
+                bulletsToShoot = Random.Range(3, 6);
                 break;
             }
             default:
@@ -140,5 +161,6 @@ public enum EnemyState
     Shooting,
     Moving,
     Growing,
-    Seed
+    Seed,
+    WaitForNext
 }

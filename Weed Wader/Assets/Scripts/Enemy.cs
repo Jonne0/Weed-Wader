@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public int health = 3;
 
+    public int scoreValue;
+
     public EnemyBehaviour behaviour;
 
     void Start()
@@ -28,10 +30,12 @@ public class Enemy : MonoBehaviour
     void Kill()
     {
         //die animation
-        GameManager.Instance.score += 1;
+        GameManager.Instance.score += this.scoreValue;
         Debug.Log(GameManager.Instance.score);
         GameManager.Instance.enemies.Remove(this);
         
+        //have a 10 appear above enemies head
+
         GameManager.Instance.SpawnFromKill(this.transform.position);
         Object.Destroy(this.gameObject, 0);
 

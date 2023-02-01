@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<Enemy> enemyPrefab;
     [SerializeField] private GameObject enemyContainer;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private float timeSinceSpawned;
     private float spawnRate = 5;
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
             timeSinceSpawned = 0;
         }
         timeSinceSpawned += Time.deltaTime;
+        this.scoreText.text = $"Score : {this.score.ToString("D6")}";
     }
 
     void SpawnNew()
@@ -48,7 +52,12 @@ public class GameManager : MonoBehaviour
 
     public void SpawnFromKill(Vector3 deathLocation)
     {
-        int spawnAmount = Random.Range(1,4);
+        float f = Random.Range(0.0f,1.0f);
+        int spawnAmount = 0;
+        if(f > 0.3 && f < 0.8)
+            spawnAmount = 1;
+        if(f > 0.8)
+            spawnAmount = 2;
         
         for(int i = 0; i < spawnAmount; i++)
         {

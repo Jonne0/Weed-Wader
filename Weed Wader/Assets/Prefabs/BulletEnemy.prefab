@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2413231031216334097}
   - component: {fileID: 6745415384454406779}
   - component: {fileID: -6285653650749650536}
-  - component: {fileID: 3248853703178638820}
+  - component: {fileID: 7026826790098851422}
   m_Layer: 0
   m_Name: BulletEnemy
   m_TagString: bulletEnemy
@@ -102,8 +102,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   isActive: 0
   bulletName: BulletEnemy
---- !u!61 &3248853703178638820
-BoxCollider2D:
+--- !u!60 &7026826790098851422
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -112,19 +112,28 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.125, y: 0.375}
+    oldSize: {x: 0.3125, y: 0.3125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.125, y: 0.375}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.03214693, y: 0.15341336}
+      - {x: -0.093187355, y: 0.09323435}
+      - {x: -0.09775585, y: -0.09375609}
+      - {x: -0.15597224, y: -0.092445076}
+      - {x: -0.15625, y: -0.15625}
+      - {x: 0.15625, y: -0.15625}
+      - {x: 0.1550491, y: -0.09473184}
+      - {x: 0.09363741, y: -0.09470041}
+      - {x: 0.090890646, y: 0.09175408}
+      - {x: 0.030728608, y: 0.15625}

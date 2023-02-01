@@ -104,8 +104,9 @@ MonoBehaviour:
   speed: 2
   target: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: -6285653650749650536, guid: 367c34a4854c1ca4da37bae3e12258b5, type: 3}
-  fireRate: 0.3
-  growthTime: 1
+  fireRate: 0.6
+  growthTime: 3
+  currentState: 0
 --- !u!114 &7216994280103634189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  scoreValue: 10
   behaviour: {fileID: 3630325544298639410}
 --- !u!50 &5930519194010835369
 Rigidbody2D:
