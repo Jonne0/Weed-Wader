@@ -4,9 +4,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public List<Enemy> enemies;
+    public List<GameObject> enemies;
 
-    [SerializeField] private List<Enemy> enemyPrefab;
     [SerializeField] private GameObject enemyContainer;
 
     private float timeSinceSpawned;
@@ -40,7 +39,7 @@ public class GameManager : MonoBehaviour
     {
         int rand_Y = Random.Range(-5, 5);
         int rand_X = Random.Range(-7, 7);
-        Enemy enemy = Object.Instantiate(enemyPrefab[0], new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
-        this.enemies.Add(enemy);
+        GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemy"), new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
+        enemies.Add(enemy);
     }
 }

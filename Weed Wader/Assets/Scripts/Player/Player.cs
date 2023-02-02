@@ -1,70 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable
 {
-    public int health;
-    [SerializeField] float invincibilityDuration = 1;
-    [SerializeField] Sprite invincibleSprite;
-    [SerializeField] Sprite baseSprite;
-    float invincibilityCounter;
-    bool isInvincible;
-    bool invincibleHit;
-    // Start is called before the first frame update
-    void Start()
-    {
-        invincibilityCounter = invincibilityDuration;
-    }
+    public bool Invincible;
+    public float InvincibleTime;
+    private float _invincibleTimeDelta;
 
-    // Update is called once per frame
+    public float Health { get; set; } = 3f;
+
+
     void Update()
     {
-        if(invincibleHit)
+        if (Invincible)
         {
-            invincibilityCounter -= Time.deltaTime;
-            if (invincibilityCounter <= 0)
+            if (_invincibleTimeDelta <= 0.1)
             {
-                isInvincible = false;
-                //revert sprite to normal
-                this.GetComponent<SpriteRenderer>().sprite = baseSprite;
-                invincibilityCounter = invincibilityDuration;
+                _invincibleTimeDelta = InvincibleTime;
             }
-        }   
-
-        //if shift is pressed, start dodgeroll, after animation, revert back to normal
-    }
-
-    void DodgeRoll()
-    {
-
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("bulletEnemy") && !isInvincible)
+            else
+            {
+                _invincibleTimeDelta -= Time.deltaTime;
+            }
+        }
+        else
         {
-            this.health -= 1;
-            //update UI
-            //cool effect
-            if(health <= 0)
-            {
-                Debug.Log("game Over");
-                health = 3;
-            }
-            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            bullet.OnHit();
-            //start counting down and turn on invincibility
-            
-            invincibleHit = true;
-            isInvincible = true;
-
-            //change sprite to invincibilitywindow sprite
-            this.GetComponent<SpriteRenderer>().sprite = invincibleSprite;
-
-
+            _invincibleTimeDelta = 0;
         }
 
-        
+        if (_invincibleTimeDelta < 0.1)
+        {
+            Invincible = false;
+        }
+
+
+        if (Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        if (!Invincible)
+        {
+            Health -= amount;
+            Invincible = true;
+            GetComponent<Animator>().SetTrigger("Damage");
+        }
+    }
+
+    public void AddHealth(float amount)
+    {
+        Health += amount;
+    }
+
+    public void SetHealth(float amount)
+    {
+        Health = amount;
+    }
+
+    public void Die()
+    {
+        GetComponent<Animator>().SetTrigger("Death");
+        GetComponent<PlayerMovement>().CanMove = false;
     }
 }

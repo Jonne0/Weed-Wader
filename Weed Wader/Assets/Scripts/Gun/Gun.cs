@@ -7,7 +7,6 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject BulletPrefab;
     [SerializeField] private GameObject AreaAttackPrefab;
     [SerializeField] private float BulletForce;
-    [SerializeField] private float Damage = 1f;
     [SerializeField] private float Range = 10f;
     [SerializeField] private int MagSize = 2;
     [SerializeField] private float ReloadTime = 2f;

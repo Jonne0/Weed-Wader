@@ -12,9 +12,19 @@ public class EnemyTest : MonoBehaviour, IDamagable
 
     void Update()
     {
+
         if (Health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    void Die()
+    {
+        //die animation
+        GameManager.Instance.score += 1;
+        Debug.Log(GameManager.Instance.score);
+        GameManager.Instance.enemies.Remove(gameObject);
+        Object.Destroy(gameObject, 0);
     }
 }

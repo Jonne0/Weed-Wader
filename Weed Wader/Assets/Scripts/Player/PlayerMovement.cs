@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool CanMove = true;
     public float Speed = 1f;
     public float Accel = 10f;
     public float GroundFriction = 5f;
@@ -29,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
         _moveInput = Vector2.right * Input.GetAxisRaw("Horizontal") + Vector2.up * Input.GetAxisRaw("Vertical");
         _dodgeKeyDown = Input.GetButtonDown("Fire2");
 
+
+        if (!CanMove) return;
+
         Accelerate(ref _velocity, Speed, Accel);
         Friction(ref _velocity, Speed, GroundFriction);
 
@@ -47,13 +51,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (_dodgeKeyDown && _dodgeCooldownDelta <= 0)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
-
-            _velocity += direction * DodgeForce;
-            _dodgeCooldownDelta = DodgeCooldown;
+            Dodge();
         }
 
+    }
+
+    void Dodge()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
+
+        _velocity += direction * DodgeForce;
+        _dodgeCooldownDelta = DodgeCooldown;
+
+        GetComponent<Player>().Invincible = true;
     }
 
     private void Accelerate(ref Vector2 velocity, float speed, float accel)
