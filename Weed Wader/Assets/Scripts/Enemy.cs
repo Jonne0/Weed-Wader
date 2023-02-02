@@ -17,7 +17,8 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("bulletPlayer"))
+        // only can be hit by player bullets, can't be hit while it's a seed
+        if(collision.gameObject.CompareTag("bulletPlayer") && behaviour.currentState != EnemyState.Seed)
         {
             health -= 1;
             if(health <= 0)
@@ -35,9 +36,11 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.enemies.Remove(this);
         
         //have a 10 appear above enemies head
-
-        GameManager.Instance.SpawnFromKill(this.transform.position);
+        //only spawn new enemies from fully grown enemies
+        if(this.behaviour.currentState != EnemyState.Growing)
+            GameManager.Instance.SpawnFromKill(this.transform.position);
         Object.Destroy(this.gameObject, 0);
+        
 
     }  
 }

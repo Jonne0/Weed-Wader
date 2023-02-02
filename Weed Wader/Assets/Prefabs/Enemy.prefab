@@ -105,7 +105,8 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: -6285653650749650536, guid: 367c34a4854c1ca4da37bae3e12258b5, type: 3}
   fireRate: 0.6
-  growthTime: 3
+  growthTime: 4
+  animator: {fileID: 4064355097045278681}
   currentState: 0
 --- !u!114 &7216994280103634189
 MonoBehaviour:
@@ -119,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb0f78ddf43ff648ad296e302bbde0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 2
   scoreValue: 10
   behaviour: {fileID: 3630325544298639410}
 --- !u!50 &5930519194010835369

@@ -11,10 +11,12 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] Bullet bulletPrefab;
     [SerializeField] private float fireRate = 0.5f;
     private float timeSinceShot;
-    [SerializeField] private float growthTime = 1;
+    [SerializeField] private float growthTime = 5;
     private float currentGrowth;
     private int bulletsToShoot;
     private float waitCounter;
+
+    [SerializeField] Animator animator;
 
     public EnemyState currentState;
     //player is kept track of to know where to aim
@@ -38,7 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 MoveTowards();
                 if(Vector3.Distance(transform.position, target) < 0.001f)
-                    ChangeState(EnemyState.Shooting);
+                    ChangeState(EnemyState.WaitForNext);
                 break;
             }
             case EnemyState.Shooting:
@@ -51,7 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
                 }
                 timeSinceShot += Time.deltaTime;
                 if(bulletsToShoot <= 0)
-                ChangeState(EnemyState.Moving);
+                ChangeState(EnemyState.WaitForNext);
                 break;
             }
             case EnemyState.Growing:
@@ -61,7 +63,7 @@ public class EnemyBehaviour : MonoBehaviour
                 currentGrowth += Time.deltaTime;
 
                 if(currentGrowth >= growthTime)
-                    ChangeState(EnemyState.Shooting);
+                    ChangeState(EnemyState.WaitForNext);
 
                 break;
             }
@@ -95,11 +97,6 @@ public class EnemyBehaviour : MonoBehaviour
         //first manage behaviour for exiting old state
         switch(currentState)
         {
-            case EnemyState.Growing:
-            {
-                //play spawn animation
-                break;
-            }
             case EnemyState.WaitForNext:
             {
                 waitCounter = 0;
@@ -124,7 +121,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
             case EnemyState.Shooting:
             {
-                bulletsToShoot = Random.Range(3, 6);
+                bulletsToShoot = Random.Range(2, 5);
                 break;
             }
             default:
@@ -132,6 +129,8 @@ public class EnemyBehaviour : MonoBehaviour
                 break;
             }
         }
+
+        animator.SetInteger("CurrentState", (int) currentState);
     }
 
     void Shoot()

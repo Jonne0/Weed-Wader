@@ -24,13 +24,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(enemies.Count == 0)
+        if(timeSinceSpawned > spawnRate && enemies.Count <= 5)
         {
             SpawnNew();
-        }
-
-        if(timeSinceSpawned > spawnRate)
-        {
             SpawnNew();
             timeSinceSpawned = 0;
         }
@@ -44,7 +40,7 @@ public class GameManager : MonoBehaviour
         float rand_X = Random.Range(-7,7);
         Enemy enemy = Object.Instantiate(enemyPrefab[0], new Vector3(rand_X, rand_Y, 0),  Quaternion.identity, enemyContainer.transform);
         
-        //enemy starts with shooting
+        //enemy starts with growing
         enemy.behaviour.ChangeState(EnemyState.Growing);
 
         this.enemies.Add(enemy);
