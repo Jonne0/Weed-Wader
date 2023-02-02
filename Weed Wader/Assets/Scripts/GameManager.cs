@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +13,9 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 5;
 
     public int score;
+
+    public float mana; //temp name didnt know how to call this xD
+
     void Awake()
     {
         Instance = this;
@@ -21,12 +23,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(enemies.Count == 0)
+        if (enemies.Count == 0)
         {
             SpawnNew();
         }
 
-        if(timeSinceSpawned > spawnRate)
+        if (timeSinceSpawned > spawnRate)
         {
             SpawnNew();
             timeSinceSpawned = 0;
@@ -36,9 +38,9 @@ public class GameManager : MonoBehaviour
 
     void SpawnNew()
     {
-        int rand_Y = Random.Range(-5,5);
-        int rand_X = Random.Range(-7,7);
-        Enemy enemy = Object.Instantiate(enemyPrefab[0], new Vector3(rand_X, rand_Y, 0),  Quaternion.identity, enemyContainer.transform);
+        int rand_Y = Random.Range(-5, 5);
+        int rand_X = Random.Range(-7, 7);
+        Enemy enemy = Object.Instantiate(enemyPrefab[0], new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
         this.enemies.Add(enemy);
     }
 }

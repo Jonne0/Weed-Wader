@@ -1,49 +1,75 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float _horizontalInput = 0;
-    private float _verticalInput = 0;
-    public float movementSpeed = 1.5f;
+    public float Speed = 1f;
+    public float Accel = 10f;
+    public float GroundFriction = 5f;
+    public float DodgeForce = 5f;
+    public float DodgeCooldown = 5f;
 
-    // Start is called before the first frame update
+    private Rigidbody2D _rigidbody;
+    private Animator _animator;
+    private Vector2 _moveInput;
+    private Vector2 _velocity;
+    private float _deltaTime;
+    private bool _dodgeKeyDown;
+    private float _dodgeCooldownDelta;
+
+
     void Start()
     {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        GetPlayerInput();
-        MovePlayer();
+        _deltaTime = Time.deltaTime;
+        _moveInput = Vector2.right * Input.GetAxisRaw("Horizontal") + Vector2.up * Input.GetAxisRaw("Vertical");
+        _dodgeKeyDown = Input.GetButtonDown("Fire2");
+
+        Accelerate(ref _velocity, Speed, Accel);
+        Friction(ref _velocity, Speed, GroundFriction);
+
+        Vector2 moveDif = _velocity - _rigidbody.velocity;
+        _rigidbody.AddForce(moveDif, ForceMode2D.Impulse);
+
+        _animator.SetFloat("Speed", _rigidbody.velocity.magnitude);
+        _animator.SetFloat("Horizontal", _moveInput.x);
+        _animator.SetFloat("Vertical", _moveInput.y);
+
+
+        if (_dodgeCooldownDelta > 0)
+        {
+            _dodgeCooldownDelta -= _deltaTime;
+        }
+
+        if (_dodgeKeyDown && _dodgeCooldownDelta <= 0)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
+
+            _velocity += direction * DodgeForce;
+            _dodgeCooldownDelta = DodgeCooldown;
+        }
+
     }
 
-    private void FixedUpdate()
+    private void Accelerate(ref Vector2 velocity, float speed, float accel)
     {
-        MovePlayer();
-        if (_horizontalInput != 0 || _verticalInput != 0)
-            RotatePlayer();
+        float dot = Vector2.Dot(velocity, _moveInput);
+
+        if (dot + accel > 10f)
+            accel = 10f - dot;
+
+        velocity += (_moveInput * speed * accel) * _deltaTime;
     }
 
-    private void GetPlayerInput()
+    private void Friction(ref Vector2 velocity, float speed, float friction)
     {
-        _horizontalInput = Input.GetAxisRaw("Horizontal");
-        _verticalInput = Input.GetAxisRaw("Vertical");
-    }
+        float addFriction = speed * friction * _deltaTime;
 
-    private void MovePlayer()
-    {
-        Vector3 directionVector = new Vector3(_horizontalInput, _verticalInput, 0);
-        transform.Translate(directionVector.normalized * Time.deltaTime * movementSpeed, Space.World);
-    }
-
-    private void RotatePlayer()
-    {
-        //Atan2 - Return value is the angle between the x-axis and a 2D vector starting at zero and terminating at (x,y).
-        float angle = Mathf.Atan2(_verticalInput, _horizontalInput) * Mathf.Rad2Deg;
-        //TODO, set sprite based on angle
-        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        velocity *= Mathf.Max(speed - addFriction, 0) / speed;
     }
 }

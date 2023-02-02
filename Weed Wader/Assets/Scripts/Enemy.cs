@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -28,10 +26,10 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("bulletPlayer"))
+        if (collision.gameObject.CompareTag("bulletPlayer"))
         {
             health -= 1;
-            if(health <= 0)
+            if (health <= 0)
                 this.Kill();
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             bullet.OnHit();
@@ -49,11 +47,11 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if(isMoving)
+        if (isMoving)
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target, step);
-            if(Vector3.Distance(transform.position, target) < 0.001f)
+            if (Vector3.Distance(transform.position, target) < 0.001f)
             {
                 isMoving = false;
                 timeSinceMoved = 0;
@@ -61,19 +59,19 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            float f = Random.Range(0.0f,1.0f);
-            if(f < 0.01f && timeSinceMoved > moveTime)
+            float f = Random.Range(0.0f, 1.0f);
+            if (f < 0.01f && timeSinceMoved > moveTime)
             {
                 Move();
             }
             else
             {
-                if(timeSinceShot > fireRate)
+                if (timeSinceShot > fireRate)
                 {
                     timeSinceShot = 0;
                     Shoot();
                 }
-                timeSinceShot += Time.deltaTime;    
+                timeSinceShot += Time.deltaTime;
             }
             timeSinceMoved += Time.deltaTime;
         }
@@ -89,13 +87,13 @@ public class Enemy : MonoBehaviour
         bullet.transform.rotation = this.transform.rotation;
         bullet.direction = direction;
         float angle = Vector2.SignedAngle(Vector2.up, direction);
-        bullet.transform.rotation = Quaternion.Euler(0,0,angle);
+        bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     void Move()
     {
-        int rand_Y = Random.Range(-5,5);
-        int rand_X = Random.Range(-7,7);
+        int rand_Y = Random.Range(-5, 5);
+        int rand_X = Random.Range(-7, 7);
 
         //do some funky animation.
         target = new Vector3(rand_X, rand_Y, this.transform.position.z);
