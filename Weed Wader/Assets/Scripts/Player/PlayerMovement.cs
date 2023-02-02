@@ -37,12 +37,12 @@ public class PlayerMovement : MonoBehaviour
         Friction(ref _velocity, Speed, GroundFriction);
 
         Vector2 moveDif = _velocity - _rigidbody.velocity;
-        _rigidbody.AddForce(moveDif, ForceMode2D.Impulse);
+        
+        _rigidbody.AddForce(_velocity, ForceMode2D.Impulse);
 
         _animator.SetFloat("Speed", _rigidbody.velocity.magnitude);
         _animator.SetFloat("Horizontal", _moveInput.x);
         _animator.SetFloat("Vertical", _moveInput.y);
-
 
         if (_dodgeCooldownDelta > 0)
         {
