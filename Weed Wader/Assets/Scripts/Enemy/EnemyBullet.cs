@@ -41,10 +41,12 @@ public class EnemyBullet : MonoBehaviour
         }
         else
         {
+            /*
             if (collision.GetComponent<EnemyBullet>() != null)
             {
                 Destroy(gameObject);
             }
+            */
 
         }
     }

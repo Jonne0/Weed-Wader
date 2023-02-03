@@ -6,8 +6,8 @@ public class EnemyBehaviour : MonoBehaviour
     public float speed = 2;
 
     public Vector3 target;
-    [SerializeField] GameObject BulletPrefab;
-    [SerializeField] float BulletForce = 10f;
+    [SerializeField] internal GameObject BulletPrefab;
+    [SerializeField] internal float BulletForce = 10f;
     [SerializeField] private float fireRate = 0.5f;
     private float timeSinceShot;
     [SerializeField] private float growthTime = 5;
@@ -19,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public EnemyState currentState;
     //player is kept track of to know where to aim
-    GameObject player;
+    internal GameObject player;
 
     void Awake()
     {
@@ -129,10 +129,10 @@ public class EnemyBehaviour : MonoBehaviour
                 }
         }
 
-        animator.SetInteger("CurrentState", (int)currentState);
+        //animator.SetInteger("CurrentState", (int)currentState);
     }
 
-    void Shoot()
+    public virtual void Shoot()
     {
 
         Vector2 direction = new Vector2(player.transform.position.x, player.transform.position.y)

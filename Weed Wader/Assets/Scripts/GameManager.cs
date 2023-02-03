@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemies;
 
     [SerializeField] private GameObject enemyContainer;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private float timeSinceSpawned;
     private float spawnRate = 5;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
             timeSinceSpawned = 0;
         }
         timeSinceSpawned += Time.deltaTime;
+        scoreText.text = "Score: " + score.ToString("D5");
     }
 
     void SpawnNew()
@@ -40,7 +43,7 @@ public class GameManager : MonoBehaviour
         
         int rand_Y = Random.Range(-5, 5);
         int rand_X = Random.Range(-7, 7);
-        GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemy"), new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
+        GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/SphereEnemy"), new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
         enemies.Add(enemy);
         
     }
