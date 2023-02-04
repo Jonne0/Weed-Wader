@@ -8,17 +8,20 @@ public class HealthBar : MonoBehaviour
 
     [SerializeField] List<GameObject> health;
 
+    [SerializeField] Sprite fullSprite;
+    [SerializeField] Sprite emptySprite;
+
     void Update()
     {
         for (int i = 0; i < health.Count; i++)
         {
             if (player.Health - 1 >= i)
             {
-                health[i].GetComponent<Image>().color = Color.red;
+                health[i].GetComponent<Image>().sprite = fullSprite;
             }
             else
             {
-                health[i].GetComponent<Image>().color = Color.grey;
+                health[i].GetComponent<Image>().sprite = emptySprite;
             }
         }
     }
