@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
 
-        _velocity += direction * DodgeForce;
+        _velocity = direction * DodgeForce;
         _dodgeCooldownDelta = DodgeCooldown;
 
         GetComponent<Player>().Invincible = true;

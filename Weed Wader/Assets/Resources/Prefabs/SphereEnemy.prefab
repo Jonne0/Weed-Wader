@@ -117,13 +117,13 @@ MonoBehaviour:
   speed: 2
   target: {x: 0, y: 0, z: 0}
   BulletPrefab: {fileID: 5749789905992273754, guid: 21063727f31c62246be13eb369ebb45f, type: 3}
-  BulletForce: 4
-  fireRate: 0.5
+  BulletForce: 3
+  fireRate: 1
   growthTime: 5
   animator: {fileID: 0}
   currentState: 0
   bulletsInSpread: 5
-  angleSpread: 30
+  angleSpread: 60
 --- !u!60 &3768009197749068397
 PolygonCollider2D:
   m_ObjectHideFlags: 0
