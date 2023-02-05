@@ -31,14 +31,17 @@ public class PlayerMovement : MonoBehaviour
         _dodgeKeyDown = Input.GetButtonDown("Fire2");
 
 
-        if (!CanMove) return;
-
+        if (!CanMove) 
+        {
+            this._rigidbody.velocity = Vector2.zero;
+            return;
+        }
         Accelerate(ref _velocity, Speed, Accel);
         Friction(ref _velocity, Speed, GroundFriction);
 
         Vector2 moveDif = _velocity - _rigidbody.velocity;
         
-        _rigidbody.AddForce(_velocity, ForceMode2D.Impulse);
+        _rigidbody.AddForce(moveDif, ForceMode2D.Impulse);
 
         _animator.SetFloat("Speed", _rigidbody.velocity.magnitude);
         _animator.SetFloat("Horizontal", _moveInput.x);

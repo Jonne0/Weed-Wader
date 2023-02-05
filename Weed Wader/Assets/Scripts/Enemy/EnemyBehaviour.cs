@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using Random = UnityEngine.Random;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -90,6 +92,13 @@ public class EnemyBehaviour : MonoBehaviour
                 }
         }
     }
+    IEnumerator ClearParticlesInSeconds(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        ParticleSystem ps = this.GetComponent<ParticleSystem>();
+        ps.Clear();
+
+    }
 
     public void ChangeState(EnemyState newState)
     {
@@ -101,6 +110,17 @@ public class EnemyBehaviour : MonoBehaviour
                     waitCounter = 0;
                     break;
                 }
+            case EnemyState.Moving:
+            {
+                SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+                sr.enabled = true;
+                gameObject.GetComponent<Collider2D>().enabled = true;
+                //stop playing effect
+                ParticleSystem ps = this.GetComponent<ParticleSystem>();
+                ps.Stop();
+                StartCoroutine(ClearParticlesInSeconds(1));
+                break;
+            }
             default:
                 {
                     break;
@@ -116,6 +136,12 @@ public class EnemyBehaviour : MonoBehaviour
                     float rand_Y = Random.Range(-5, 5);
                     float rand_X = Random.Range(-7, 7);
                     target = new Vector3(rand_X, rand_Y, this.transform.position.z);
+                    SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+                    sr.enabled = false;
+                    gameObject.GetComponent<Collider2D>().enabled = false;
+                    //start playing effect
+                    ParticleSystem ps = this.GetComponent<ParticleSystem>();
+                    ps.Play();
                     break;
                 }
             case EnemyState.Shooting:
@@ -140,6 +166,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        direction = direction.normalized;
         rb.AddForce(direction * BulletForce, ForceMode2D.Impulse);
         float angle = Vector2.SignedAngle(Vector2.up, direction);
         bullet.transform.rotation = Quaternion.Euler(0, 0, angle);

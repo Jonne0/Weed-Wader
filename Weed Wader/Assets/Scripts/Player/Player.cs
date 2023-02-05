@@ -36,6 +36,7 @@ public class Player : MonoBehaviour, IDamagable
         if (Health <= 0)
         {
             Die();
+            GameManager.Instance.EndGame();
         }
     }
 

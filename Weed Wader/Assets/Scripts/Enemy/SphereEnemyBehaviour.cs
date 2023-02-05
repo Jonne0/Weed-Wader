@@ -23,6 +23,8 @@ public class SphereEnemyBehaviour : EnemyBehaviour
             GameObject bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             direction = Quaternion.Euler(0f,0f, angleExtra) * direction;
+
+            direction = direction.normalized;
             
             rb.AddForce(direction * BulletForce, ForceMode2D.Impulse);
             float angle = Vector2.SignedAngle(Vector2.up, direction);

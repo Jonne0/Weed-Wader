@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2413231031216334097}
   - component: {fileID: 6745415384454406779}
-  - component: {fileID: 2684548093195445884}
+  - component: {fileID: 8731713142501242853}
   - component: {fileID: 1871846009589854318}
   - component: {fileID: 7026826790098851422}
   m_Layer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2684548093195445884
+--- !u!114 &8731713142501242853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  LifeSpan: 0.5
+  LifeSpan: 0.7
   Impact: {fileID: 0}
   _lifeSpawnDelta: 0
 --- !u!50 &1871846009589854318
