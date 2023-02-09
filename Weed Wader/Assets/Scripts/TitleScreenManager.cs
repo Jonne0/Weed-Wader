@@ -11,6 +11,6 @@ public class TitleScreenManager : MonoBehaviour
     }
     public void StartHelp()
     {
-
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 }

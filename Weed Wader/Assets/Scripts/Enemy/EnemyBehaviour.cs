@@ -157,7 +157,7 @@ public class EnemyBehaviour : MonoBehaviour
                 }
             case EnemyState.Shooting:
                 {
-                    bulletsToShoot = Random.Range(2, 8);
+                    bulletsToShoot = Random.Range(2, 5);
                     break;
                 }
             case EnemyState.Seed:
