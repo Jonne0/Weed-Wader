@@ -84,7 +84,8 @@ public class EnemyBehaviour : MonoBehaviour
                     {
                         //70/30 for shoot or move
                         float f = Random.Range(0.0f, 1.0f);
-                        if (f > 0.7f)
+                        //CHANGE THIS
+                        if (f > 0.6f)
                             ChangeState(EnemyState.Moving);
                         else
                             ChangeState(EnemyState.Shooting);
@@ -107,25 +108,32 @@ public class EnemyBehaviour : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.WaitForNext:
-                {
-                    waitCounter = 0;
-                    break;
-                }
+            {
+                waitCounter = 0;
+                break;
+            }
             case EnemyState.Moving:
             {
+                /*
                 SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
                 sr.enabled = true;
-                gameObject.GetComponent<Collider2D>().enabled = true;
                 //stop playing effect
+                */
+                gameObject.GetComponent<Collider2D>().enabled = true;
                 ParticleSystem ps = this.GetComponent<ParticleSystem>();
                 ps.Stop();
                 StartCoroutine(ClearParticlesInSeconds(1));
                 break;
             }
+            case EnemyState.Seed:
+            {
+                gameObject.GetComponent<Collider2D>().enabled = true;
+                break;
+            }
             default:
-                {
-                    break;
-                }
+            {
+                break;
+            }
         }
 
         //then manage behaviour for entering new state
@@ -134,11 +142,13 @@ public class EnemyBehaviour : MonoBehaviour
         {
             case EnemyState.Moving:
                 {
-                    float rand_Y = Random.Range(-5, 5);
-                    float rand_X = Random.Range(-7, 7);
+                    float rand_Y = Random.Range(-3.5f, 2.5f);
+                    float rand_X = Random.Range(-7.0f, 7.0f);
+                    /*
                     target = new Vector3(rand_X, rand_Y, this.transform.position.z);
                     SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
                     sr.enabled = false;
+                    */
                     gameObject.GetComponent<Collider2D>().enabled = false;
                     //start playing effect
                     ParticleSystem ps = this.GetComponent<ParticleSystem>();
@@ -150,6 +160,12 @@ public class EnemyBehaviour : MonoBehaviour
                     bulletsToShoot = Random.Range(2, 8);
                     break;
                 }
+            case EnemyState.Seed:
+            {
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                break;
+
+            }
             default:
                 {
                     break;

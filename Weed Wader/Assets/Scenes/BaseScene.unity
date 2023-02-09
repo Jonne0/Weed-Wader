@@ -175,9 +175,9 @@ MonoBehaviour:
   BulletPrefab: {fileID: 5749789905992273754, guid: dc386d8f214bf464baef4882bfa72fd4, type: 3}
   AreaAttackPrefab: {fileID: 5749789905992273754, guid: 6d62637dfa563f04fae61da69ef051f5, type: 3}
   BulletForce: 10
-  Range: 10
+  Range: 20
   MagSize: 10
-  ReloadTime: 1.5
+  ReloadTime: 0
   Cooldown: 0.2
 --- !u!212 &110299751
 SpriteRenderer:
@@ -674,7 +674,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.515625
+  orthographic size: 6.6041665
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5751,7 +5751,7 @@ Transform:
   m_GameObject: {fileID: 655940698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1646963943}
@@ -5785,10 +5785,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanMove: 1
-  Speed: 7.5
-  Accel: 10
+  Speed: 5
+  Accel: 7.5
   GroundFriction: 5
-  DodgeForce: 45
+  DodgeForce: 35
   DodgeCooldown: 1.5
 --- !u!95 &655940702
 Animator:
@@ -7310,6 +7310,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1806737678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806737679}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1806737679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806737678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.8, y: 2.54, z: 0.6796948}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2000776617
 GameObject:
   m_ObjectHideFlags: 0

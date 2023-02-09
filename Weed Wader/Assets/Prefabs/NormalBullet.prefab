@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  LifeSpan: 0.8
+  LifeSpan: 2
   Impact: {fileID: 0}
   _lifeSpawnDelta: 0
 --- !u!50 &-2986638536705816086

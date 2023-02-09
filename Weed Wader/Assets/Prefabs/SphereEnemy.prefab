@@ -106,13 +106,13 @@ MonoBehaviour:
   speed: 2
   target: {x: 0, y: 0, z: 0}
   BulletPrefab: {fileID: 5749789905992273754, guid: 21063727f31c62246be13eb369ebb45f, type: 3}
-  BulletForce: 3
-  fireRate: 1
-  growthTime: 5
+  BulletForce: 2.5
+  fireRate: 1.5
+  growthTime: 4
   animator: {fileID: -6700222104126430877}
   score: 10
   currentState: 2
-  bulletsInSpread: 5
+  bulletsInSpread: 3
   angleSpread: 60
 --- !u!60 &3768009197749068397
 PolygonCollider2D:

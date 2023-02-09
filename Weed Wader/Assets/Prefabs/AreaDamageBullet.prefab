@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1eaa86ef8c4c34ebd5228277df8a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeSpan: 0.8
+  LifeSpan: 2
   AreaAttack: {fileID: 7330843923267389602, guid: ff2a1155c521c3740a266fe863fe8fa4, type: 3}
   _lifeSpawnDelta: 0
 --- !u!50 &-2986638536705816086

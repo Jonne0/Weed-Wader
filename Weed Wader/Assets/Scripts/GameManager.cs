@@ -51,11 +51,12 @@ public class GameManager : MonoBehaviour
 
     void SpawnNew()
     {
-        
-        int rand_Y = Random.Range(-5, 5);
-        int rand_X = Random.Range(-7, 7);
+        if(enemies.Count > 8)
+            return;
+        float rand_Y = Random.Range(-3.5f, 2.5f);
+        float rand_X = Random.Range(-7.0f, 7.0f);
         float r = Random.Range(0.0f, 1.0f);
-        if(r > 0.5)
+        if(r > 0.35)
         {
             GameObject enemy = Instantiate(enemyBase, new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
             enemies.Add(enemy);
@@ -71,7 +72,10 @@ public class GameManager : MonoBehaviour
 
     public void SpawnFromKill(GameObject deadEnemy, Vector3 deathLocation)
     {
-        int spawnAmount = Random.Range(1,4);
+        if(enemies.Count > 8)
+            return;
+
+        int spawnAmount = 0;
         float f = Random.Range(0.0f,1.0f);
         if(f > 0.3 && f < 0.8)
             spawnAmount = 1;
@@ -81,8 +85,8 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < spawnAmount; i++)
         {
             //TODO choose a location within screen and near enemy
-            float rand_Y = Random.Range(Mathf.Max(-5, deathLocation.y -3),Mathf.Min(5, deathLocation.y + 3));
-            float rand_X = Random.Range(Mathf.Max(-7, deathLocation.x -3),Mathf.Min(7, deathLocation.x + 3));
+            float rand_Y = Random.Range((float) Mathf.Max(-3.5f, deathLocation.y -3),(float) Mathf.Min(2.5f, deathLocation.y + 3));
+            float rand_X = Random.Range((float) Mathf.Max(-7, deathLocation.x -3),(float) Mathf.Min(7, deathLocation.x + 3));
 
             //shoot a seed away from deathLocation towards new location  
             Enemy enemy = Object.Instantiate(deadEnemy, deathLocation,

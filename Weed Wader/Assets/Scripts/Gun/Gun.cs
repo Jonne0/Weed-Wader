@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour
             AreaAttack();
         }
 
+        
         if (_mag <= 0)
         {
             Reload();
@@ -57,6 +58,7 @@ public class Gun : MonoBehaviour
 
     void AreaAttack()
     {
+        /*
         if (GameManager.Instance.mana >= 5)
         {
             if (GameManager.Instance.mana - 5 >= 0)
@@ -73,6 +75,7 @@ public class Gun : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(direction * BulletForce / 2, ForceMode2D.Impulse);
         }
+        */
     }
 
     void Shoot()

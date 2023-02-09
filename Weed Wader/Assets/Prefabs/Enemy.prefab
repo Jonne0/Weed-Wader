@@ -156,8 +156,8 @@ MonoBehaviour:
   speed: 2
   target: {x: 0, y: 0, z: 0}
   BulletPrefab: {fileID: 5749789905992273754, guid: 367c34a4854c1ca4da37bae3e12258b5, type: 3}
-  BulletForce: 4
-  fireRate: 0.2
+  BulletForce: 3
+  fireRate: 0.3
   growthTime: 4
   animator: {fileID: 7218614802242993982}
   score: 10
