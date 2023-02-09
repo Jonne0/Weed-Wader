@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject enemyContainer;
     [SerializeField] private Text scoreText;
 
+    [SerializeField] private GameObject enemyBase;
+    [SerializeField] private GameObject enemySphere;
+
+
     private float timeSinceSpawned;
     private float spawnRate = 5;
 
@@ -53,19 +57,19 @@ public class GameManager : MonoBehaviour
         float r = Random.Range(0.0f, 1.0f);
         if(r > 0.5)
         {
-            GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/SphereEnemy"), new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
+            GameObject enemy = Instantiate(enemyBase, new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
             enemies.Add(enemy);
         }
         else
         {
-            GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemy"), new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
+            GameObject enemy = Instantiate(enemySphere, new Vector3(rand_X, rand_Y, 0), Quaternion.identity, enemyContainer.transform);
             enemies.Add(enemy);
         }
         
         
     }
 
-    public void SpawnFromKill(Enemy deadEnemy, Vector3 deathLocation)
+    public void SpawnFromKill(GameObject deadEnemy, Vector3 deathLocation)
     {
         int spawnAmount = Random.Range(1,4);
         float f = Random.Range(0.0f,1.0f);
@@ -81,8 +85,8 @@ public class GameManager : MonoBehaviour
             float rand_X = Random.Range(Mathf.Max(-7, deathLocation.x -3),Mathf.Min(7, deathLocation.x + 3));
 
             //shoot a seed away from deathLocation towards new location  
-            Enemy enemy = Object.Instantiate(Resources.Load<Enemy>($"Prefabs/{deadEnemy.name}"), deathLocation,
-              Quaternion.identity, enemyContainer.transform);
+            Enemy enemy = Object.Instantiate(deadEnemy, deathLocation,
+              Quaternion.identity, enemyContainer.transform).GetComponent<Enemy>();
               EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
               behaviour.ChangeState(EnemyState.Seed);
               behaviour.target = new Vector3(rand_X, rand_Y, deathLocation.z);

@@ -156,7 +156,7 @@ public class EnemyBehaviour : MonoBehaviour
                 }
         }
 
-        //animator.SetInteger("CurrentState", (int)currentState);
+        animator.SetInteger("currentState", (int)currentState);
     }
 
     public virtual void Shoot()

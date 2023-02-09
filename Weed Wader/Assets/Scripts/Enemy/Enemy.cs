@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour, IDamagable
         GameManager.Instance.score += behaviour.score;
         GameManager.Instance.enemies.Remove(gameObject);
         //play score exploding animation so for arcade feel
-        GameManager.Instance.SpawnFromKill(this, this.transform.position);
+        GameManager.Instance.SpawnFromKill(this.gameObject, this.transform.position);
 
         //explode in multiple seeds
         Object.Destroy(gameObject, 0);

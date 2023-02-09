@@ -326,7 +326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &202588227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -657,7 +657,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.12758097, g: 0.4433962, b: 0.14829014, a: 0}
+  m_BackGroundColor: {r: 0.28627452, g: 0.41176474, b: 0.18039216, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -6391,7 +6391,9 @@ MonoBehaviour:
   enemies: []
   gameOverScreen: {fileID: 202588226}
   enemyContainer: {fileID: 1233250713}
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 2000776621}
+  enemyBase: {fileID: 548704255345282010, guid: 537af436a7de83a4da6639b3bdc23b82, type: 3}
+  enemySphere: {fileID: 3617403865164037233, guid: 0a8ca730de4b0bd49a5ce21cfbd96b0a, type: 3}
   score: 0
   mana: 0
 --- !u!1 &1233250713

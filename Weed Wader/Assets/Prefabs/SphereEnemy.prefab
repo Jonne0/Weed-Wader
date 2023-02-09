@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3252701343269393955}
   - component: {fileID: 8129642658748574003}
-  - component: {fileID: 6617670562614023687}
   - component: {fileID: 8596434234995887887}
   - component: {fileID: 3768009197749068397}
   - component: {fileID: 9139537127238581188}
   - component: {fileID: 2709541485112398498}
   - component: {fileID: 5255755797629818253}
+  - component: {fileID: -8905890667268441403}
+  - component: {fileID: -6700222104126430877}
   m_Layer: 0
   m_Name: SphereEnemy
   m_TagString: Enemy
@@ -31,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3617403865164037233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: -0.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -90,18 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6617670562614023687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3617403865164037233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce5343da25620e54cbd6686a9dac0232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8596434234995887887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +109,7 @@ MonoBehaviour:
   BulletForce: 3
   fireRate: 1
   growthTime: 5
-  animator: {fileID: 0}
+  animator: {fileID: -6700222104126430877}
   score: 10
   currentState: 2
   bulletsInSpread: 5
@@ -4961,3 +4950,35 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-8905890667268441403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617403865164037233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5343da25620e54cbd6686a9dac0232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &-6700222104126430877
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617403865164037233}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 18733df1abcd96143b7e35a5141c9a41, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

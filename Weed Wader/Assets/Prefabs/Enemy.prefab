@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 6970945191643224321}
   - component: {fileID: 5515604184614807690}
   - component: {fileID: 40861871553130650}
-  - component: {fileID: 6975728585724538582}
   - component: {fileID: 7218614802242993982}
   - component: {fileID: 6490484010748617293}
   - component: {fileID: 4588170588004938874}
+  - component: {fileID: 8761716855824444766}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548704255345282010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.206394, y: -2.1549385, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -162,18 +162,6 @@ MonoBehaviour:
   animator: {fileID: 7218614802242993982}
   score: 10
   currentState: 2
---- !u!114 &6975728585724538582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 548704255345282010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce5343da25620e54cbd6686a9dac0232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &7218614802242993982
 Animator:
   serializedVersion: 4
@@ -184,7 +172,7 @@ Animator:
   m_GameObject: {fileID: 548704255345282010}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ba0e7802e06b9fb439dfd740e55f89d0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5f34ea674e6b44d4f914bae0c99f97fa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4973,3 +4961,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8761716855824444766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548704255345282010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5343da25620e54cbd6686a9dac0232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
