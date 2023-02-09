@@ -18,6 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     private float waitCounter;
 
     [SerializeField] Animator animator;
+    public int score;
 
     public EnemyState currentState;
     //player is kept track of to know where to aim

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyTest : MonoBehaviour, IDamagable
+public class Enemy : MonoBehaviour, IDamagable
 {
     public float Health { get; set; } = 5f;
 
@@ -22,9 +22,13 @@ public class EnemyTest : MonoBehaviour, IDamagable
     void Die()
     {
         //die animation
-        GameManager.Instance.score += 1;
-        Debug.Log(GameManager.Instance.score);
+        EnemyBehaviour behaviour = gameObject.GetComponent<EnemyBehaviour>();
+        GameManager.Instance.score += behaviour.score;
         GameManager.Instance.enemies.Remove(gameObject);
+        //play score exploding animation so for arcade feel
+        GameManager.Instance.SpawnFromKill(this, this.transform.position);
+
+        //explode in multiple seeds
         Object.Destroy(gameObject, 0);
     }
 }

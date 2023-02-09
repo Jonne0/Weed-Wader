@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject enemyContainer;
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private Text scoreText;
 
     private float timeSinceSpawned;
     private float spawnRate = 5;
@@ -63,6 +64,32 @@ public class GameManager : MonoBehaviour
         
         
     }
+
+    public void SpawnFromKill(Enemy deadEnemy, Vector3 deathLocation)
+    {
+        int spawnAmount = Random.Range(1,4);
+        float f = Random.Range(0.0f,1.0f);
+        if(f > 0.3 && f < 0.8)
+            spawnAmount = 1;
+        if(f > 0.8)
+            spawnAmount = 2;
+        
+        for(int i = 0; i < spawnAmount; i++)
+        {
+            //TODO choose a location within screen and near enemy
+            float rand_Y = Random.Range(Mathf.Max(-5, deathLocation.y -3),Mathf.Min(5, deathLocation.y + 3));
+            float rand_X = Random.Range(Mathf.Max(-7, deathLocation.x -3),Mathf.Min(7, deathLocation.x + 3));
+
+            //shoot a seed away from deathLocation towards new location  
+            Enemy enemy = Object.Instantiate(Resources.Load<Enemy>($"Prefabs/{deadEnemy.name}"), deathLocation,
+              Quaternion.identity, enemyContainer.transform);
+              EnemyBehaviour behaviour = enemy.GetComponent<EnemyBehaviour>();
+              behaviour.ChangeState(EnemyState.Seed);
+              behaviour.target = new Vector3(rand_X, rand_Y, deathLocation.z);
+            this.enemies.Add(enemy.gameObject);
+        }
+    }
+
 
     public void Restart()
     {
